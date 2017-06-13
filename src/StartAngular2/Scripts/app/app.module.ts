@@ -11,15 +11,25 @@ import { ItemListComponent } from "./item-list.component";
 import { ItemDetailComponent } from "./item-detail.component";
 import { ItemService } from "./item.service";
 
+import { AboutComponent } from "./about.component";
+import { HomeComponent } from "./home.component";
+import { LoginComponent } from "./login.component";
+import { PageNotFoundComponent } from "./page-not-found.component";
+import { AppRouting } from "./app.routing";
+
+
 @NgModule({
     // directives, components, and pipes
-    declarations: [AppComponent, ItemListComponent, ItemDetailComponent, RouterModule
+    declarations: [AppComponent, ItemListComponent, ItemDetailComponent, 
+        AboutComponent, HomeComponent, LoginComponent, PageNotFoundComponent
     ],
     // modules
     imports: [
         BrowserModule,
         HttpModule,
-        FormsModule
+        FormsModule,
+        RouterModule,
+        AppRouting
     ],
     // providers
     providers: [ItemService

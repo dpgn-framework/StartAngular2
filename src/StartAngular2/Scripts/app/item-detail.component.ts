@@ -1,5 +1,8 @@
-﻿import { Component, Input } from "@angular/core";
+﻿import { Component, OnInit } from "@angular/core";
 import { Item } from "./item";
+import { Router, ActivatedRoute } from "@angular/router";
+import { ItemService } from "./item.service";
+
 @Component({
     selector: "item-detail",
     template: `
@@ -8,13 +11,11 @@ import { Item } from "./item";
           <ul>
               <li>
                   <label>Title:</label>
-                  <input [(ngModel)]="item.Title" placeholder="Insert the
-title..."/>
+                  <input [(ngModel)]="item.Title" placeholder="Insert the title..."/>
               </li>
               <li>
                   <label>Description:</label>
-                  <textarea [(ngModel)]="item.Description"
-placeholder="Insert a suitable description..."></textarea>
+                  <textarea [(ngModel)]="item.Description" placeholder="Insert a suitable description..."></textarea>
               </li>
           </ul>
         </div>
@@ -36,5 +37,23 @@ placeholder="Insert a suitable description..."></textarea>
     `]
 })
 export class ItemDetailComponent {
-    @Input("item") item: Item;
+    //@Input("item") item: Item;
+
+    item: Item;
+    constructor(private itemService: ItemService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute) {
+    }
+    ngOnInit() {
+        var id = +this.activatedRoute.snapshot.params["id"];
+        if (id) {
+            this.itemService.get(id).subscribe(
+                item => this.item = item
+            );
+        }
+        else {
+            console.log("Invalid id: routing back to home...");
+            this.router.navigate([""]);
+        }
+    }
 }
