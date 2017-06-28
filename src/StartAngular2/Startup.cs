@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using StartAngular2.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace StartAngular2
 {
@@ -38,6 +41,13 @@ namespace StartAngular2
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc();
+
+            // Add EntityFramework's Identity support.
+            services.AddEntityFramework();
+            // Add ApplicationDbContext.
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]) 
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
