@@ -8,7 +8,8 @@ import "rxjs/Rx";
 
 import { AppComponent } from "./app.component";
 import { ItemListComponent } from "./item-list.component";
-import { ItemDetailComponent } from "./item-detail.component";
+import { ItemDetailEditComponent } from "./item-detail-edit.component";
+import { ItemDetailViewComponent } from "./item-detail-view.component";
 import { ItemService } from "./item.service";
 
 import { AboutComponent } from "./about.component";
@@ -20,7 +21,7 @@ import { AppRouting } from "./app.routing";
 
 @NgModule({
     // directives, components, and pipes
-    declarations: [AppComponent, ItemListComponent, ItemDetailComponent, 
+    declarations: [AppComponent, ItemListComponent, ItemDetailEditComponent, ItemDetailViewComponent,
         AboutComponent, HomeComponent, LoginComponent, PageNotFoundComponent
     ],
     // modules
