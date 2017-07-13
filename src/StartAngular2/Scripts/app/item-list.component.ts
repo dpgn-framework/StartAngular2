@@ -6,24 +6,18 @@ import { Router } from "@angular/router";
 @Component({
     selector: "item-list",
     template: `
-        <h2>{{title}}</h2>
+        <h3>{{title}}</h3>
         <ul class="items">
             <li *ngFor="let item of items"
                 [class.selected]="item === selectedItem"
                 (click)="onSelect(item)">
-                <span>{{item.Title}}</span>
+                 <div class="title">{{item.Title}}</div>
+                 <div class="description">{{item.Description}}</div>
             </li>
         </ul>
         
     `,
-    styles: [`
-        ul.items li {
-            cursor: pointer;
-        }
-        ul.items li.selected {
-            background-color: #cccccc;
-        }
-    `]
+    styles: []
 })
 export class ItemListComponent implements OnInit {
     @Input() class: string;
