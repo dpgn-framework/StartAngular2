@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Nelibur.ObjectMapper;
 using StartAngular2.ViewModels;
 using StartAngular2.Data.Items;
+using StartAngular2.Data.Users;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace StartAngular2
 {
@@ -47,6 +49,15 @@ namespace StartAngular2
 
             // Add EntityFramework's Identity support.
             services.AddEntityFramework();
+
+            // Add Identity Services & Stores
+            services.AddIdentity<ApplicationUser, IdentityRole>(config => {
+                config.User.RequireUniqueEmail = true;
+                config.Password.RequireNonAlphanumeric = false;
+                config.Cookies.ApplicationCookie.AutomaticChallenge = false;
+            }).AddEntityFrameworkStores<ApplicationDbContext>()
+              .AddDefaultTokenProviders();
+
             // Add ApplicationDbContext.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]) 

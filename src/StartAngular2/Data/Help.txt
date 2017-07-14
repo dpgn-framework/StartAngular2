@@ -1,3 +1,9 @@
 ﻿dotnet ef migrations add "Initial" -o "Data\Migrations"
 
 dotnet ef database update
+
+--
+dotnet ef migrations add "Identity" –o "Data\Migrations"
+
+dotnet ef database drop
+dotnet ef database update
