@@ -15,6 +15,8 @@ using StartAngular2.ViewModels;
 using StartAngular2.Data.Items;
 using StartAngular2.Data.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using StartAngular2.Classes;
 
 namespace StartAngular2
 {
@@ -96,6 +98,25 @@ namespace StartAngular2
                     context.Context.Response.Headers["Expires"] = Configuration["StaticFiles:Headers:Expires"];
                 }
             });
+
+            // Add a custom Jwt Provider to generate Tokens
+            app.UseJwtProvider();
+            // Add the Jwt Bearer Header Authentication to validate Tokens
+            app.UseJwtBearerAuthentication(new JwtBearerOptions()
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                RequireHttpsMetadata = false,
+                TokenValidationParameters = new TokenValidationParameters()
+                {
+                    IssuerSigningKey = JwtProvider.SecurityKey,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = JwtProvider.Issuer,
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                }
+            });
+
             // Add MVC to the pipeline
             app.UseMvc();
 
