@@ -125,14 +125,14 @@ namespace StartAngular2
 
 
             // Seed the Database (if needed)
-            try
-            {
-                dbSeeder.SeedAsync().Wait();
-            }
-            catch (AggregateException e)
-            {
-                throw new Exception(e.ToString());
-            }
+            //try
+            //{
+            //    dbSeeder.SeedAsync().Wait();
+            //}
+            //catch (AggregateException e)
+            //{
+            //    throw new Exception(e.ToString());
+            //}
         }
     }
 }

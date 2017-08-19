@@ -1,4 +1,10 @@
-﻿dotnet ef migrations add "Initial" -o "Data\Migrations"
+﻿https://docs.microsoft.com/en-us/aspnet/core/publishing/iis
+Deploy dotnetcore to IIS --> Install the .NET Core Windows Server Hosting bundle
+https://go.microsoft.com/fwlink/?linkid=848766
+
+
+
+dotnet ef migrations add "Initial" -o "Data\Migrations"
 
 dotnet ef database update
 
